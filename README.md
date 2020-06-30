@@ -2,6 +2,6 @@
 Identifies and processes deletions from illumina sequencing reads  
 
 **Requirements:**  
-ShapeMapper-V1
+ShapeMapper-V1  
 Flash  
 BWA-Mem  
