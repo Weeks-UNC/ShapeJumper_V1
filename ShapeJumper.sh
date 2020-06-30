@@ -50,14 +50,16 @@ fi
 if [ $# -eq 3 ]; then
 	#trim reads
 	mkdir ShapeJumperIntermediateFiles
-	~/shapemapper_0.1.5/bin/shapemapper_read_trimmer --min_phred 20 --min_length 25 --window_size 5 --in $testFastq1 --out ShapeJumperIntermediateFiles/$testFastq1
-	~/shapemapper_0.1.5/bin/shapemapper_read_trimmer --min_phred 20 --min_length 25 --window_size 5 --in $controlFastq1 --out ShapeJumperIntermediateFiles/$controlFastq1
+	echo "Trimming Reads:"
+	shapemapper_read_trimmer --min_phred 20 --min_length 25 --window_size 5 --in $testFastq1 --out ShapeJumperIntermediateFiles/$testFastq1
+	shapemapper_read_trimmer --min_phred 20 --min_length 25 --window_size 5 --in $controlFastq1 --out ShapeJumperIntermediateFiles/$controlFastq1
 	#copy the fasta file into the intermediate directory
 	cp $fasta ShapeJumperIntermediateFiles
 	#all analysis will take place in this intermeditate directory
 	cd ShapeJumperIntermediateFiles
 	
 	#Run BWA-MEM to align reads
+	echo "Aligning Reads:"
 	bwa index $fasta
 	testSam=${testFastq1:0:${#testFastq1} - 6}".sam"
 	bwa mem $fasta $testFastq1 -O 2 -B 2 -k 10 -T 15 >${testSam}
@@ -68,10 +70,11 @@ else
 	#process reads if they are paired
 	#trim reads
 	mkdir ShapeJumperIntermediateFiles
-	~/shapemapper_0.1.5/bin/shapemapper_read_trimmer --min_phred 20 --min_length 25 --window_size 5 --in $testFastq1 --out filtered_reads/$testFastq1
-	~/shapemapper_0.1.5/bin/shapemapper_read_trimmer --min_phred 20 --min_length 25 --window_size 5 --in $testFastq2 --out filtered_reads/$testFastq2
-	~/shapemapper_0.1.5/bin/shapemapper_read_trimmer --min_phred 20 --min_length 25 --window_size 5 --in $controlFastq1 --out filtered_reads/$controlFastq1
-	~/shapemapper_0.1.5/bin/shapemapper_read_trimmer --min_phred 20 --min_length 25 --window_size 5 --in $controlFastq2 --out filtered_reads/$controlFastq2
+	echo "Trimming Reads:"
+	shapemapper_read_trimmer --min_phred 20 --min_length 25 --window_size 5 --in $testFastq1 --out ShapeJumperIntermediateFiles/$testFastq1
+	shapemapper_read_trimmer --min_phred 20 --min_length 25 --window_size 5 --in $testFastq2 --out ShapeJumperIntermediateFiles/$testFastq2
+	shapemapper_read_trimmer --min_phred 20 --min_length 25 --window_size 5 --in $controlFastq1 --out ShapeJumperIntermediateFiles/$controlFastq1
+	shapemapper_read_trimmer --min_phred 20 --min_length 25 --window_size 5 --in $controlFastq2 --out ShapeJumperIntermediateFiles/$controlFastq2
 
 	#move original reads into their own directory, move trimmed reads into current directory
 	#copy the fasta file into the intermediate directory
@@ -80,6 +83,7 @@ else
 	cd ShapeJumperIntermediateFiles
 	
 	#Flash the trimmed reads together
+	echo "Mate Pair Merging Reads:"
 	flash $testFastq1 $testFastq2 -o ${testFastq1:0:${#testFastq1} - 21}
 	flash $controlFastq1 $controlFastq2 -o ${controlFastq1:0:${#controlFastq1} - 21}
 	#flash generates unneccessary histograms, remove them
@@ -89,6 +93,7 @@ else
 	controlFlashed=${controlFastq1:0:${#controlFastq1} - 21}".extendedFrags.fastq"
 	
 	#Run BWA MEM on Flashed reads
+	echo "Aligning Reads:"
 	testSam=${testFlashed:0:${#testFlashed} - 20}".sam"
 	controlSam=${controlFlashed:0:${#controlFlashed} - 20}".sam"
 	bwa index $fasta
