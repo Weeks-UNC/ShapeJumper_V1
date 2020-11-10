@@ -222,8 +222,8 @@ def makeDelEndsExactMatch(deletion, readNT, readSeq, refSeq):
         #print refRegion
         #print "readNT is " + str(readNT)
         #print readRegion
-        #make sure that the read region is not empty
-        if not readRegion:
+        #make sure that the read region is not empty and longer than 3 nts
+        if not readRegion or len(readRegion) < 3:
             shiftCounter = 12
             allMatch = False
             break
@@ -253,14 +253,14 @@ def makeDelEndsExactMatch(deletion, readNT, readSeq, refSeq):
         #print refRegion
         #print "readNT is " + str(readNT)
         #print readRegion
-        # make sure that the read region is not empty
-        if not readRegion:
+        # make sure that the read region is not empty and longer than 3 nts
+        if not readRegion or len(readRegion) < 3:
             shiftCounter = 12
             allMatch = False
             break
         # determine if the two segments match
         allMatch = sequencesMatch(refRegion, readRegion)
-        # if they don't match move the read and referenct nt up one as well as the length of the deletion
+        # if they don't match move the read and reference nt up one as well as the length of the deletion
         if allMatch == False:
             insertNts = insertNts + readSeq[readNT]
             ref2NT = ref2NT + 1
