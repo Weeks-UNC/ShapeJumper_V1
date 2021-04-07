@@ -35,7 +35,7 @@ Quality (PHRED scores)
 ### Execution Instructions:
 Copy script ShapeJumper.sh to your current working directory. The directory you run this script in is where output will be generated.  
 **Paired End Reads**  
-*bash ShapeJumper.sh referenceSequence.fasta crosslinkRead1.fastq crosslinkread2.fastq controlRead1.fastq controlRead2.fastq*
+*bash ShapeJumper.sh referenceSequence.fasta crosslinkRead1.fastq crosslinkread2.fastq controlRead1.fastq controlRead2.fastq*  
 **Unpaired Reads**  
 *bash ShapeJumper.sh referenceSequence.fasta crosslinkUnPairedReads.fastq controlUnPairedReads.fastq*  
 
@@ -70,4 +70,18 @@ IA-RNaseP.extendedFrags.fastq*
 
 Again 100,000 reads from a SHAPE-JuMP experiment on RNase P, but these have already been merged with FLASH to create paired end reads.
 
-## Output Description
+## Output Description  
+
+**Deletion Text File**  
+The final output from succesful execution of ShapeJumper will be stored in a text file ending in *_Merged_ProcessedDeletions.txt* and starting with the name of the crosslinked sample.  
+EXAMPLE OUTPUT:  
+Total Reads Aligned:437994      Total Deletions:27806.0  
+rnasep  123     184     0.0015252557  
+rnasep  113     184     0.0012315027  
+
+The first line is a header, denoting total reads aligned in the crosslinked sample. Total Deletions are the raw count of deletions longer than 10 nucleotides observed in the crosslinked sample.  
+Subsequent lines follow the same 4 column format:  
+- Column 1 = Reference name from fasta file matching alignment. Samples with multiple reference sequences may contain multiple names.
+- Column 2 = 
+- Column 3 =
+- Column 4 = 
