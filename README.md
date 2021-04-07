@@ -34,15 +34,31 @@ Quality (PHRED scores)
 
 ### Execution Instructions:
 Copy script ShapeJumper.sh to your current working directory. The directory you run this script in is where output will be generated.
-**Paired End Reads**
-bash ShapeJumper.sh referenceSequence.fasta crosslinkRead1.fastq crosslinkread2.fastq controlRead1.fastq controlRead2.fastq"
-**Unpaired Reads**
-bash ShapeJumper.sh referenceSequence.fasta crosslinkUnPairedReads.fastq controlUnPairedReads.fastq
+**Paired End Reads**  
+*bash ShapeJumper.sh referenceSequence.fasta crosslinkRead1.fastq crosslinkread2.fastq controlRead1.fastq controlRead2.fastq*
+**Unpaired Reads**  
+*bash ShapeJumper.sh referenceSequence.fasta crosslinkUnPairedReads.fastq controlUnPairedReads.fastq*
 
-### Example files
+### Example files  
+Provided example files from a SHAPE-JuMP experiment on RNase P Catalytic domain, a small RNA with available sructure on pdb: 3DHS.  
+RNA was crosslinked with TBIA and IA was used as a mono-adduct control.  
+
 **Reference Fasta File**
+*RNaseP_WithStructureCassette.fa*  
+Contains the reference 268 nucleotides of DNA sequence for the RNase P Catalytic domain.  
+Also included are the 5' and 3' structure cassettes. Most _in vitro_ studies of small RNAs use transcripts with structure cassettes to aid in library prep.  
+The 5' structure casette is 14 nucleotides long, the 3' cassette is 43 nucleotides.  
+
+See https://doi.org/10.1021/ja043822v for more in depth explanation.  
 
 **Paired End Reads**
+*TBIA-RNaseP_S1_L001_R1_001.fastq  
+TBIA-RNaseP_S1_L001_R2_001.fastq  
+IA-RNaseP_S2_L001_R1_001.fastq  
+IA-RNaseP_S2_L001_R2_001.fastq*  
 
 **Unpaired Reads**
+*TBIA-RNaseP.extendedFrags.fastq  
+IA-RNaseP.extendedFrags.fastq*  
+
 ## Output Description
