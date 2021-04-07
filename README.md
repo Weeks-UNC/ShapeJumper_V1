@@ -33,32 +33,41 @@ Sequence
 Quality (PHRED scores)
 
 ### Execution Instructions:
-Copy script ShapeJumper.sh to your current working directory. The directory you run this script in is where output will be generated.
+Copy script ShapeJumper.sh to your current working directory. The directory you run this script in is where output will be generated.  
 **Paired End Reads**  
 *bash ShapeJumper.sh referenceSequence.fasta crosslinkRead1.fastq crosslinkread2.fastq controlRead1.fastq controlRead2.fastq*
 **Unpaired Reads**  
-*bash ShapeJumper.sh referenceSequence.fasta crosslinkUnPairedReads.fastq controlUnPairedReads.fastq*
+*bash ShapeJumper.sh referenceSequence.fasta crosslinkUnPairedReads.fastq controlUnPairedReads.fastq*  
+
+Input file names: The fastq files are assumed to have Illumina generated file names for paired end reads and FLASH generated filenames for Unpaired.  
+Paired end read file names should contain a sample name followed by *\_S##\_L001\_R#\_001.fastq* where ## is an ilumina generated sample number and # is the read number, 1 or 2.  
+Unpaired reads should contain a sample name followed by *.extendedFrags.fastq*.  
+Failure to follow naming conventions will result in truncated and misnamed output files.
 
 ### Example files  
 Provided example files from a SHAPE-JuMP experiment on RNase P Catalytic domain, a small RNA with available sructure on pdb: 3DHS.  
 RNA was crosslinked with TBIA and IA was used as a mono-adduct control.  
 
-**Reference Fasta File**
+**Reference Fasta File**  
 *RNaseP_WithStructureCassette.fa*  
-Contains the reference 268 nucleotides of DNA sequence for the RNase P Catalytic domain.  
+Contains the reference 268 nucleotides of DNA sequence for the RNase P catalytic domain.  
 Also included are the 5' and 3' structure cassettes. Most _in vitro_ studies of small RNAs use transcripts with structure cassettes to aid in library prep.  
 The 5' structure casette is 14 nucleotides long, the 3' cassette is 43 nucleotides.  
 
 See https://doi.org/10.1021/ja043822v for more in depth explanation.  
 
-**Paired End Reads**
+**Paired End Reads**  
 *TBIA-RNaseP_S1_L001_R1_001.fastq  
 TBIA-RNaseP_S1_L001_R2_001.fastq  
 IA-RNaseP_S2_L001_R1_001.fastq  
 IA-RNaseP_S2_L001_R2_001.fastq*  
 
-**Unpaired Reads**
+100,000 paired end reads from a SHAPE-JuMP experiment on RNase P catalytic domain. TBIA samples were crosslinked, IA is the mono-adduct control.  
+
+**Unpaired Reads**  
 *TBIA-RNaseP.extendedFrags.fastq  
 IA-RNaseP.extendedFrags.fastq*  
+
+Again 100,000 reads from a SHAPE-JuMP experiment on RNase P, but these have already been merged with FLASH to create paired end reads.
 
 ## Output Description
