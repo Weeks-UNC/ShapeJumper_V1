@@ -74,6 +74,8 @@ Again 100,000 reads from a SHAPE-JuMP experiment on RNase P, but these have alre
 
 **Deletion Text File**  
 The final output from succesful execution of ShapeJumper will be stored in a text file ending in *_Merged_ProcessedDeletions.txt* and starting with the name of the crosslinked sample.  
+Deletions in this file have been fully processed: Rates have been normalized and subtracted by control deletion rates. The 5' deletion start sites have been shifted 2 nucleotides downstream. If selected, numbering has been adjusted for structure cassettes.
+
 EXAMPLE OUTPUT:  
 Total Reads Aligned:437994      Total Deletions:27806.0  
 rnasep  123     184     0.0015252557  
@@ -82,6 +84,6 @@ rnasep  113     184     0.0012315027
 The first line is a header, denoting total reads aligned in the crosslinked sample. Total Deletions are the raw count of deletions longer than 10 nucleotides observed in the crosslinked sample.  
 Subsequent lines follow the same 4 column format:  
 - Column 1 = Reference name from fasta file matching alignment. Samples with multiple reference sequences may contain multiple names.
-- Column 2 = 
-- Column 3 =
-- Column 4 = 
+- Column 2 = Deletion start site. Numbering is relative to reference fasta sequence.
+- Column 3 = Deletion stop site.
+- Column 4 = Deletion rate frequency. This value is normalized by read depth.
