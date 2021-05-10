@@ -44,7 +44,7 @@ Copy script ShapeJumper.sh to your current working directory. The directory you 
 **Unpaired Reads**  
 `bash ShapeJumper.sh referenceSequence.fasta crosslinkUnPairedReads.fastq controlUnPairedReads.fastq`  
 
-**Input file names**: The fastq files are assumed to have Illumina generated file names for paired end reads and FLASH generated filenames for Unpaired.  
+**Input file names**: The fastq files are assumed to have Illumina generated file names for paired end reads and FLASH generated filenames for unpaired reads.  
 Paired end read file names should contain a sample name followed by `\_S##\_L001\_R#\_001.fastq` where ## is an ilumina generated sample number and # is the read number, 1 or 2.  
 Unpaired reads should contain the sample name followed by `.extendedFrags.fastq`.  
 Failure to follow naming conventions will result in truncated and misnamed output files.
