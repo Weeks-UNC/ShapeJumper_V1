@@ -14,7 +14,7 @@ All programs should be installed and added to the path
 clone this package to your home directory with this command:
 git clone https://github.com/Weeks-UNC/ShapeJumper_V1.0.git
 
-Within the now downloaded ShapeJumper_V1.0 folder is the script ShapeJumper.sh
+Within the now downloaded ShapeJumper_V1.0 folder is the script ShapeJumper.sh  
 Copy this script to your working directory.
 
 ### Required inputs:
