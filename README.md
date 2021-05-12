@@ -36,18 +36,35 @@ Quality (PHRED scores)
 See https://support.illumina.com/help/BaseSpace_OLH_009008/Content/Source/Informatics/BS/QualityScoreEncoding_swBS.htm to decode ASCII symbols of PHRED scores*  
 
 
+
 ### Execution Instructions:
 Copy script ShapeJumper.sh to your current working directory. The directory you run this script in is where output will be generated.  
   
 **Paired End Reads**  
-`bash ShapeJumper.sh referenceSequence.fasta crosslinkRead1.fastq crosslinkread2.fastq controlRead1.fastq controlRead2.fastq`  
+`bash ShapeJumper.sh -f referenceSequence.fasta -t1 crosslinkRead1.fastq -t2 crosslinkread2.fastq -c1 controlRead1.fastq -c2 controlRead2.fastq`  
 **Unpaired Reads**  
-`bash ShapeJumper.sh referenceSequence.fasta crosslinkUnPairedReads.fastq controlUnPairedReads.fastq`  
+`bash ShapeJumper.sh -f referenceSequence.fasta -t1 crosslinkUnPairedReads.fastq -c1 controlUnPairedReads.fastq`  
 
 **Input file names**: The fastq files are assumed to have Illumina generated file names for paired end reads and FLASH generated filenames for unpaired reads.  
 Paired end read file names should contain a sample name followed by `\_S##\_L001\_R#\_001.fastq` where ## is an ilumina generated sample number and # is the read number, 1 or 2.  
 Unpaired reads should contain the sample name followed by `.extendedFrags.fastq`.  
 Failure to follow naming conventions will result in truncated and misnamed output files.
+
+### Optional inputs
+The bash script may also be run with the following optional flags  
+
+`-sc, --structureCassette`  
+This option removes any deletions to or from a structure cassette. Also, all deletion sites are subtracted by 14 from both start and stop sites. This allows the numbering to reflect a deletions position in the target RNA, regardless of the structure cassette. This option is very useful for downstream analysis of deletions mapping on to secondary or tertiary structures.  
+
+`-s, --shift5Prime SHIFTINTEGER`  
+Change the default shift applied to the 5' end of deletions from the default value of 2. 0 and negative numbers are accepted.
+`-a, --keepAmbiguousDeletions`  
+Include ambiguous deletions in the final output. By default they are removed.
+`-n, --normalizeByBothEnds`  
+Normalize deletion counts by determining the median depth of the 5 nucleotides at BOTH ends of the deletion and divide the deletion count by square rooted product of these medians. By default deletions are normalized by the median read depth of the 5 nucleotides at the 3' end only.
+
+*Individual python scripts also have additional options. More experienced users can easily alter their execution in the bash script to include these options.  
+Run the python scripts without arguments to see all possible options.*
 
 ### Example files  
 Provided example files from a SHAPE-JuMP experiment on RNase P Catalytic domain, a small RNA with an available structure in the pdb: 3DHS.  
@@ -79,7 +96,7 @@ IA-RNaseP_S2_L001_R2_001.fastq`
 ## Output Description  
 
 **Deletion Text File**  
-The final output from succesful execution of ShapeJumper will be stored in a text file ending in `_Merged_ProcessedDeletions.txt` and starting with the name of the crosslinked sample.  
+The final output from succesful execution of ShapeJumper will be stored in a text file ending in `_ProcessedDeletions.txt` and starting with the name of the crosslinked sample.  
 Deletions in this file have been fully processed: Rates have been normalized and subtracted by control deletion rates. Ambiguous deletions and and those with inserts in the deletion longer than 10 nucleotides have been removed. Exact edge matching at deletion sites has been enforced. The 5' deletion start sites have been shifted 2 nucleotides downstream. If selected, numbering has been adjusted for to account for structure cassettes.
 
 EXAMPLE OUTPUT:  
