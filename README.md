@@ -55,13 +55,12 @@ The bash script may also be run with the following optional flags
 
 `-sc, --structureCassette`  
 This option removes any deletions to or from a structure cassette. Also, all deletion sites are subtracted by 14 from both start and stop sites. This allows the numbering to reflect a deletions position in the target RNA, regardless of the structure cassette. This option is very useful for downstream analysis of deletions mapping on to secondary or tertiary structures.  
-
 `-s, --shift5Prime SHIFTINTEGER`  
-Change the default shift applied to the 5' end of deletions from the default value of 2. 0 and negative numbers are accepted.
+Change the default shift applied to the 5' end of deletions from the default value of 2. 0 and negative numbers are accepted.  
 `-a, --keepAmbiguousDeletions`  
-Include ambiguous deletions in the final output. By default they are removed.
+Include ambiguous deletions in the final output. By default they are removed.  
 `-n, --normalizeByBothEnds`  
-Normalize deletion counts by determining the median depth of the 5 nucleotides at BOTH ends of the deletion and divide the deletion count by square rooted product of these medians. By default deletions are normalized by the median read depth of the 5 nucleotides at the 3' end only.
+Normalize deletion counts by determining the median depth of the 5 nucleotides at BOTH ends of the deletion and divide the deletion count by square rooted product of these medians. By default deletions are normalized by the median read depth of the 5 nucleotides at the 3' end only.  
 
 *Individual python scripts also have additional options. More experienced users can easily alter their execution in the bash script to include these options.  
 Run the python scripts without arguments to see all possible options.*
