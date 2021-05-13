@@ -5,7 +5,7 @@ twchrist@email.unc.edu
 
 ### Requirements:  
 Python 2.7  including modules numpy, matplotlib, argparse, re,  
-ShapeMapper-V2, available at https://github.com/Weeks-UNC/shapemapper2
+ShapeMapper-V2, available at https://github.com/Weeks-UNC/shapemapper2  
 Flash, available at https://sourceforge.net/projects/flashpage/  
 BWA, available at http://bio-bwa.sourceforge.net/  
 All programs should be installed and added to the path
