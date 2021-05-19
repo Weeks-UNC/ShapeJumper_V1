@@ -6,6 +6,7 @@ twchrist@email.unc.edu
 ### Requirements:  
 Python 2.7  including modules numpy, matplotlib, argparse, re,  
 ShapeMapper-V2, available at https://github.com/Weeks-UNC/shapemapper2  
+In addition to having Shapemapper in your path, you should also add the `internals/bin` folder of Shapemapper to your path.  
 Flash, available at https://sourceforge.net/projects/flashpage/  
 BWA, available at http://bio-bwa.sourceforge.net/  
 All programs should be installed and added to the path
